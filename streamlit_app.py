@@ -11,7 +11,7 @@ import visualization as viz
 @st.cache_data
 def load_data():
     df = pd.read_csv("processed_abstracts.csv")
-    embeddings = np.load("specter_embeddings.npy")  # will be generated using MiniLM model
+    embeddings = np.load("specter_embeddings.npy")  # generated using MiniLM model
     return df, embeddings
 
 # ✅ Build FAISS index
@@ -22,6 +22,7 @@ def build_faiss_index(embeddings):
     return index
 
 # ✅ Perform semantic search
+
 def semantic_search(query, model, index, df, embeddings, top_k=5, min_score=0.0):
     query_vec = model.encode([query]).astype('float32')
     D, I = index.search(query_vec, top_k)
@@ -41,11 +42,11 @@ def semantic_search(query, model, index, df, embeddings, top_k=5, min_score=0.0)
 def main():
     st.set_page_config(page_title="SciVector: Semantic Explorer", layout="wide")
     st.title("🧬 SciVector: Semantic Expertise Explorer")
-    st.markdown("Explore scientific domains, perform semantic search, and visualize conceptual relationships across research topics.")
+    st.markdown("Perform semantic search across scientific abstracts and explore conceptual relationships between biomedical domains.")
 
     # Load data and model
     df, embeddings = load_data()
-    model = SentenceTransformer("all-MiniLM-L6-v2")  # ✅ Lightweight and compatible with Streamlit Cloud
+    model = SentenceTransformer("all-MiniLM-L6-v2")  # ✅ must match embedding source
     index = build_faiss_index(embeddings)
 
     # Semantic Search Panel
