@@ -61,12 +61,14 @@ scivector/
 ## 🧪 Try It Live
 
 ➡️ **Streamlit App:** [https://scivector.streamlit.app](https://scivector.streamlit.app)
-📘 Jupyter Notebook
-For a fully annotated, step-by-step breakdown of the SciVector pipeline — including abstract cleaning, transformer embeddings, FAISS indexing, and visualization — check out the accompanying Colab notebook:
 
-➡️ 🧠 Open in Google Colab → Scientific Expertise Mapping.ipynb
+## 📘 Interactive Notebook
 
-This notebook mirrors the full workflow powering the Streamlit app and is ideal for educational use, replication, or modification
+Want to explore the full SciVector workflow interactively?
+
+➡️ [**Launch in Google Colab**](https://colab.research.google.com/drive/1xyJljd0B4X0zWlyY0B-w4MUn0e_HN1tc)
+
+This notebook walks through every step — from abstract preprocessing to MiniLM embeddings, FAISS indexing, and domain-level visualizations — in an interactive Python environment.
 
 ---
 
