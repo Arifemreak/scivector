@@ -11,17 +11,17 @@ import visualization as viz
 @st.cache_data
 def load_data():
     df = pd.read_csv("processed_abstracts.csv")
-    embeddings = np.load("specter_embeddings.npy")
+    embeddings = np.load("specter_embeddings.npy")  # will be generated using MiniLM model
     return df, embeddings
 
-# ✅ Build FAISS index for efficient similarity search
+# ✅ Build FAISS index
 @st.cache_resource
 def build_faiss_index(embeddings):
     index = faiss.IndexFlatL2(embeddings.shape[1])
     index.add(embeddings)
     return index
 
-# ✅ Perform semantic search with normalized score threshold
+# ✅ Perform semantic search
 def semantic_search(query, model, index, df, embeddings, top_k=5, min_score=0.0):
     query_vec = model.encode([query]).astype('float32')
     D, I = index.search(query_vec, top_k)
@@ -36,18 +36,19 @@ def semantic_search(query, model, index, df, embeddings, top_k=5, min_score=0.0)
             })
     return pd.DataFrame(results)
 
-# ✅ Streamlit application interface
+# ✅ Streamlit Interface
+
 def main():
     st.set_page_config(page_title="SciVector: Semantic Explorer", layout="wide")
     st.title("🧬 SciVector: Semantic Expertise Explorer")
-    st.markdown("\n**Explore scientific knowledge semantically.**\n\nLeverage precomputed SPECTER embeddings, FAISS similarity search, and domain-level visualizations to navigate expertise across biomedical research domains.")
+    st.markdown("Explore scientific domains, perform semantic search, and visualize conceptual relationships across research topics.")
 
-    # 🔄 Load data and model
+    # Load data and model
     df, embeddings = load_data()
-    model = SentenceTransformer("allenai/specter")  # ✅ must match embedding source
+    model = SentenceTransformer("all-MiniLM-L6-v2")  # ✅ Lightweight and compatible with Streamlit Cloud
     index = build_faiss_index(embeddings)
 
-    # 🔍 Semantic search section
+    # Semantic Search Panel
     st.subheader("🔍 Semantic Abstract Search")
     query = st.text_input("Enter a scientific concept:", "cancer metabolism")
     top_k = st.slider("Top-K Results", 1, 20, 5)
@@ -60,11 +61,11 @@ def main():
         csv = results_df.to_csv(index=False).encode("utf-8")
         st.download_button("📥 Download Results as CSV", csv, "semantic_results.csv", "text/csv")
 
-    # 📊 Visualization section
+    # Visualization Panel
     with st.expander("📊 Visualize Scientific Domain Landscape"):
         domain_vectors = viz.compute_domain_centroids(df, embeddings)
 
-        st.markdown("#### t-SNE Projection of Domain Centroids")
+        st.markdown("#### t-SNE Projection")
         viz.plot_centroid_tsne(domain_vectors)
 
         st.markdown("#### Cosine Similarity Heatmap")
