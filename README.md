@@ -98,6 +98,3 @@ Created by [@Arifemreak](https://github.com/Arifemreak), a bioinformatics studen
 Feel free to fork, contribute, or reach out if you're building AI tools for science.
 
 
-## 👤 Author
-
-Built by [@Arifemreak](https://github.com/Arifemreak) as part of a scientific AI tools initiative for open knowledge and research mapping.
