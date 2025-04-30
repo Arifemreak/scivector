@@ -1,56 +1,102 @@
 # 🧬 SciVector: Semantic Expertise Explorer
 
-SciVector is an interactive semantic search and expertise visualization tool for scientific literature.  
-It allows users to explore conceptual relationships between research domains using transformer embeddings, FAISS indexing, and an intuitive Streamlit interface.
+**SciVector** is a modular, high-performance application for semantic analysis and domain-centric visualization of scientific literature. Designed for researchers, data scientists, and open science initiatives, it leverages transformer-based language models and efficient vector search to explore biomedical knowledge at scale.
 
-## 🚀 Features
+---
 
-- 🔍 **Semantic Abstract Search**  
-  Enter a concept (e.g., _cancer metabolism_) and retrieve the most relevant scientific abstracts via vector similarity.
+## 🚀 Key Features
 
-- 🧠 **Fast Vector Indexing with FAISS**  
-  Efficient nearest neighbor search on over 900+ SPECTER-based embeddings.
+- 🔍 **Semantic Concept Search**  
+  Input any scientific term (e.g. *cancer metabolism*, *checkpoint blockade*) and retrieve the most relevant abstracts using cosine similarity over MiniLM embeddings.
 
-- 📊 **Scientific Landscape Visualizations**  
-  - t-SNE projection of domain centroids  
-  - Cosine similarity heatmap  
+- ⚡ **FAISS-Powered Vector Search**  
+  Real-time nearest neighbor search over 900+ pre-embedded biomedical abstracts with FAISS L2 indexing.
+
+- 📊 **Scientific Expertise Visualization**  
+  Gain insights into how domains relate through interactive:
+  - t-SNE projection of domain centroids
+  - Cosine similarity heatmap matrix
   - Hierarchical clustering dendrogram
 
-- 📥 **Result Export**  
-  Download semantic results as CSV.
+- 📥 **Results Export**  
+  Download top search results in CSV format for external analysis.
+
+---
+
+## 🧠 Scientific Motivation
+
+SciVector enables a lightweight form of **expertise mapping** and **semantic exploration** without requiring full-scale LLM inference. It is particularly valuable for:
+
+- Exploratory research synthesis
+- Comparative analysis of scientific subfields
+- Building semantic bridges across biomedical domains
+- Rapid prototyping for AI4Science and NLP-based research tools
 
 ---
 
 ## 🛠️ Tech Stack
 
-- `sentence-transformers` (MiniLM / SPECTER)
-- `FAISS` for approximate similarity search
-- `scikit-learn`, `seaborn`, `matplotlib` for analysis & plotting
-- `Streamlit` for interactive UI
+| Layer           | Technology Used                          |
+|----------------|-------------------------------------------|
+| Embedding      | `sentence-transformers` (MiniLM-L6-v2)   |
+| Vector Search  | `FAISS` (L2 distance)                     |
+| Visualization  | `t-SNE`, `scikit-learn`, `seaborn`, `matplotlib` |
+| Interface      | `Streamlit`                               |
 
 ---
 
-## 🧪 Demo
+## 📂 Project Structure
 
-> 🔗 Live app: [scivector.streamlit.app](https://scivector.streamlit.app)
+```bash
+scivector/
+├── processed_abstracts.csv         # Cleaned biomedical abstracts dataset
+├── specter_embeddings.npy          # Precomputed embeddings (MiniLM)
+├── streamlit_app.py                # Main interactive UI logic
+├── visualization.py                # Domain-level plotting and analysis
+├── requirements.txt                # All dependencies
+```
 
 ---
 
-## 📂 Files
+## 🧪 Try It Live
 
-- `processed_abstracts.csv` — Cleaned biomedical abstracts
-- `specter_embeddings.npy` — Precomputed MiniLM/SPECTER embeddings
-- `streamlit_app.py` — Frontend logic
-- `visualization.py` — Domain-level analysis & plotting functions
-- `requirements.txt` — Environment dependencies
+➡️ **Streamlit App:** [https://scivector.streamlit.app](https://scivector.streamlit.app)
+
+
+---
+
+## 💡 Use Cases
+
+- Researcher profiling & AI-assisted literature review
+- Internship and fellowship portfolios for computational biology
+- Exploring thematic overlaps between research domains
+- Teaching conceptual clustering and NLP-driven knowledge mining
+
+---
+
+## ⚙️ Run Locally
+
+```bash
+git clone https://github.com/Arifemreak/scivector.git
+cd scivector
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
 
 ---
 
 ## 📄 License
 
-MIT — feel free to use, adapt, and contribute.
+**MIT License** — free to use, modify, and distribute.
 
 ---
+
+## 👤 Author
+
+Created by [@Arifemreak](https://github.com/Arifemreak), a bioinformatics student and NLP developer focused on bridging artificial intelligence with life sciences for open knowledge.
+
+Feel free to fork, contribute, or reach out if you're building AI tools for science.
+
 
 ## 👤 Author
 
